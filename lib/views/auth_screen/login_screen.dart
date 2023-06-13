@@ -6,7 +6,6 @@ import 'package:emart/widgets/custom_button.dart';
 import 'package:emart/widgets/input_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../widgets/applogo_widget.dart';
 
