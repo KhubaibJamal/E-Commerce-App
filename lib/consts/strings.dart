@@ -18,7 +18,18 @@ const termAndCondition = "Term and Condition";
 const alreadyHaveAnAccount = "Already Have An Account";
 const loginWith = "Login With";
 
+// home String
 const home = "Home",
     categories = "Categories",
     cart = "Cart",
     account = "Account";
+
+// home screen String
+
+const searchAnything = "Search Anything",
+    todayDeal = "Today Deal",
+    flashSales = "Flash Sales",
+    topCategories = "Top Categories",
+    topSellers = "Top Sellers",
+    brands = "Brands",
+    featuredCategories = "Featured Categories";
