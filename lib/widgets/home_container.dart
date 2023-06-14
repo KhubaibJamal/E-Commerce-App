@@ -1,5 +1,4 @@
 import 'package:emart/consts/consts.dart';
-import 'package:emart/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 
 Widget homeContainer(
