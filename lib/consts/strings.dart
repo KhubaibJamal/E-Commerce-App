@@ -17,3 +17,8 @@ const privacyPolicy = "Privacy Policy";
 const termAndCondition = "Term and Condition";
 const alreadyHaveAnAccount = "Already Have An Account";
 const loginWith = "Login With";
+
+const home = "Home",
+    categories = "Categories",
+    cart = "Cart",
+    account = "Account";
