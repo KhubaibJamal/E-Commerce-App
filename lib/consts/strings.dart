@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 const appName = "eMart";
 const appVersion = "Version 1.0.0";
 const credits = "@Khubaib Jamal";
@@ -32,4 +34,10 @@ const searchAnything = "Search Anything",
     topCategories = "Top Categories",
     topSellers = "Top Sellers",
     brands = "Brands",
-    featuredCategories = "Featured Categories";
+    featuredCategories = "Featured Categories",
+    womenDress = "women Dress",
+    menDress = "Men Dress",
+    computer = "Computer",
+    watch = "Watch",
+    earbuds = "Earbuds",
+    tiffany = "Tiffany";

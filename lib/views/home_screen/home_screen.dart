@@ -1,7 +1,8 @@
 import 'package:emart/consts/consts.dart';
 import 'package:emart/consts/list.dart';
-import 'package:emart/widgets/home_container.dart';
-import 'package:emart/widgets/swiper_widget.dart';
+import 'package:emart/views/home_screen/components/featured_card.dart';
+import 'package:emart/views/home_screen/components/home_container.dart';
+import 'package:emart/views/home_screen/components/swiper_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -17,6 +18,7 @@ class HomeScreen extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
+            // input text field
             Container(
               alignment: Alignment.center,
               height: 60,
@@ -40,6 +42,7 @@ class HomeScreen extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
+                    // slider function
                     swiperWidget(list: sliderList),
                     10.heightBox,
                     Row(
@@ -59,6 +62,7 @@ class HomeScreen extends StatelessWidget {
                     10.heightBox,
                     swiperWidget(list: sliderList2),
                     10.heightBox,
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: List.generate(
@@ -81,7 +85,8 @@ class HomeScreen extends StatelessWidget {
                         },
                       ),
                     ),
-                    15.heightBox,
+                    20.heightBox,
+                    // featured Text
                     Align(
                         alignment: Alignment.centerLeft,
                         child: featuredCategories.text
@@ -89,6 +94,30 @@ class HomeScreen extends StatelessWidget {
                             .fontFamily(semibold)
                             .size(18)
                             .make()),
+
+                    15.heightBox,
+                    // featured card
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: List.generate(
+                          3,
+                          (index) {
+                            return Column(
+                              children: [
+                                featuredWidget(
+                                    img: featuredCategoryImage1[index],
+                                    title: featuredCategoryTitle1[index]),
+                                10.heightBox,
+                                featuredWidget(
+                                    img: featuredCategoryImage2[index],
+                                    title: featuredCategoryTitle2[index]),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

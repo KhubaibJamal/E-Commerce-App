@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../consts/consts.dart';
+import '../../../consts/consts.dart';
 
 Widget swiperWidget({required List list}) {
   return VxSwiper.builder(
