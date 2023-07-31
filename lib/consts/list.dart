@@ -13,3 +13,26 @@ const featuredCategoryImage1 = [imgS1, imgS2, imgS3];
 const featuredCategoryImage2 = [imgS4, imgS5, imgS6];
 const featuredCategoryTitle1 = [womenDress, computer, earbuds];
 const featuredCategoryTitle2 = [watch, tiffany, menDress];
+
+const categoryList = [
+  womenClothing,
+  menClothingFashion,
+  computerAccessories,
+  autoMobile,
+  kidToy,
+  sports,
+  jewelry,
+  cellPhone,
+  furniture
+];
+const categoryImages = [
+  imgFc1,
+  imgFc2,
+  imgFc3,
+  imgFc4,
+  imgFc5,
+  imgFc6,
+  imgFc7,
+  imgFc8,
+  imgFc9
+];

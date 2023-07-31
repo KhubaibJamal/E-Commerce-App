@@ -39,3 +39,14 @@ const searchAnything = "Search Anything",
     watch = "Watch",
     earbuds = "Earbuds",
     tiffany = "Tiffany";
+
+// category screen
+const womenClothing = "Women Clothing",
+    menClothingFashion = "Men Clothing Fashion",
+    computerAccessories = "Computer Accessories",
+    autoMobile = "Auto Mobile",
+    kidToy = "kid and Toy",
+    sports = "Sports",
+    jewelry = "Jewelry",
+    cellPhone = "Cell Phone",
+    furniture = "Furniture";
