@@ -17,11 +17,12 @@ class Home extends StatelessWidget {
 
     var navbarItem = [
       BottomNavigationBarItem(
-          icon: Image.asset(
-            icHome,
-            width: 26,
-          ),
-          label: home),
+        icon: Image.asset(
+          icHome,
+          width: 26,
+        ),
+        label: home,
+      ),
       BottomNavigationBarItem(
           icon: Image.asset(
             icCategories,
