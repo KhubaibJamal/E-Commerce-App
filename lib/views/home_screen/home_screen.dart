@@ -118,6 +118,115 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    20.heightBox,
+                    // feature product
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(12),
+                      decoration: const BoxDecoration(color: redColor),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          featureProduct.text
+                              .fontFamily(bold)
+                              .white
+                              .size(18)
+                              .make(),
+                          10.heightBox,
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: List.generate(
+                                5,
+                                (index) => Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image.asset(
+                                      imgP1,
+                                      width: 150,
+                                      fit: BoxFit.cover,
+                                      // height: 100,
+                                    ),
+                                    10.heightBox,
+                                    "HP laptop"
+                                        .text
+                                        .fontFamily(semibold)
+                                        .color(darkFontGrey)
+                                        .make(),
+                                    10.heightBox,
+                                    "\$3000"
+                                        .text
+                                        .fontFamily(semibold)
+                                        .color(redColor)
+                                        .size(16)
+                                        .make()
+                                  ],
+                                )
+                                    .box
+                                    .white
+                                    .rounded
+                                    .padding(const EdgeInsets.all(8))
+                                    .margin(const EdgeInsets.symmetric(
+                                        horizontal: 4))
+                                    .make(),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    20.heightBox,
+                    // slider 3
+                    swiperWidget(list: sliderList),
+
+                    20.heightBox,
+                    // all product
+                    "All products".text.fontFamily(bold).white.size(18).make(),
+                    GridView.builder(
+                        shrinkWrap: true,
+                        itemCount: 6,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 8,
+                          crossAxisSpacing: 8,
+                          mainAxisExtent: 300,
+                        ),
+                        itemBuilder: ((context, index) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset(
+                                imgP6,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.fill,
+                              ),
+                              const Spacer(),
+                              "HP laptop"
+                                  .text
+                                  .fontFamily(semibold)
+                                  .color(darkFontGrey)
+                                  .make(),
+                              10.heightBox,
+                              "\$3000"
+                                  .text
+                                  .fontFamily(semibold)
+                                  .color(redColor)
+                                  .size(16)
+                                  .make()
+                            ],
+                          )
+                              .box
+                              .white
+                              .rounded
+                              .padding(const EdgeInsets.all(12))
+                              .margin(const EdgeInsets.symmetric(horizontal: 4))
+                              .make();
+                        })),
                   ],
                 ),
               ),

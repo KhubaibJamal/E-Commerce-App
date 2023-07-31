@@ -38,7 +38,8 @@ const searchAnything = "Search Anything",
     computer = "Computer",
     watch = "Watch",
     earbuds = "Earbuds",
-    tiffany = "Tiffany";
+    tiffany = "Tiffany",
+    featureProduct = "Feature Product";
 
 // category screen
 const womenClothing = "Women Clothing",
