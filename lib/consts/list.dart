@@ -36,3 +36,12 @@ const categoryImages = [
   imgFc8,
   imgFc9
 ];
+
+// Item detail
+const itemDetailButton = [
+  video,
+  review,
+  sellerPolicy,
+  returnPolicy,
+  supportPolicy,
+];
