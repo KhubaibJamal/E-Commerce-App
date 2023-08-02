@@ -1,6 +1,6 @@
 import 'package:emart/consts/consts.dart';
 import 'package:emart/controller/home_controller.dart';
-import 'package:emart/views/account_screen/account_screen.dart';
+import 'package:emart/views/profile_screen/profile_screen.dart';
 import 'package:emart/views/cart_screen/cart_screen.dart';
 import 'package:emart/views/categories_screen/categories_screen.dart';
 import 'package:emart/views/home_screen/home_screen.dart';
@@ -47,7 +47,7 @@ class Home extends StatelessWidget {
       const HomeScreen(),
       const CategoriesScreen(),
       const CartScreen(),
-      const AccountScreen(),
+      const ProfileScreen(),
     ];
     return Scaffold(
       body: Column(
