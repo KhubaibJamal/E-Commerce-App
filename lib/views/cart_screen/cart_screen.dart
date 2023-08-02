@@ -1,4 +1,3 @@
-import 'package:emart/consts/colors.dart';
 import 'package:emart/consts/consts.dart';
 import 'package:flutter/material.dart';
 
