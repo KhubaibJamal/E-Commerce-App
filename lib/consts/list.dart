@@ -45,3 +45,7 @@ const itemDetailButton = [
   returnPolicy,
   supportPolicy,
 ];
+
+// profile screen list
+const profileScreenList = [myOrder, wishlist, messages];
+const pragmaScreenIconList = [icOrders, icOrder, icMessages];
