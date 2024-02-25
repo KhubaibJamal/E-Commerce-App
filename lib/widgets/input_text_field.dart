@@ -4,13 +4,17 @@ import 'package:emart/consts/consts.dart';
 class InputTextField extends StatelessWidget {
   final String title;
   final String hintText;
+  final bool? obscureText;
+  final Widget? suffix;
   final TextEditingController controller;
 
   const InputTextField(
       {super.key,
       required this.title,
       required this.hintText,
-      required this.controller});
+      required this.controller,
+      this.obscureText = false,
+      this.suffix});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +24,10 @@ class InputTextField extends StatelessWidget {
         title.text.color(redColor).size(16).fontFamily(semibold).make(),
         5.heightBox,
         TextFormField(
+          obscureText: obscureText!,
           controller: controller,
           decoration: InputDecoration(
+            suffix: suffix,
             hintText: hintText,
             hintStyle: const TextStyle(
               fontFamily: semibold,

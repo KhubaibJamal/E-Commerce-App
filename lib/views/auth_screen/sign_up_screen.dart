@@ -17,6 +17,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   bool isCheck = false;
+  bool showPassword = false;
   var authController = Get.put(AuthController());
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
@@ -75,13 +76,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: emailController,
                     ),
                     InputTextField(
-                        title: password,
-                        hintText: passwordHint,
-                        controller: passwordController),
+                      obscureText: showPassword,
+                      suffix: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            showPassword = !showPassword;
+                          });
+                        },
+                        icon: Icon(
+                          showPassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
+                      ),
+                      title: password,
+                      hintText: passwordHint,
+                      controller: passwordController,
+                    ),
                     InputTextField(
-                        title: confirmPassword,
-                        hintText: passwordHint,
-                        controller: confirmPasswordController),
+                      obscureText: showPassword,
+                      suffix: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            showPassword = !showPassword;
+                          });
+                        },
+                        icon: Icon(
+                          showPassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
+                      ),
+                      title: confirmPassword,
+                      hintText: confirmPasswordHint,
+                      controller: confirmPasswordController,
+                    ),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: TextButton(
