@@ -29,7 +29,7 @@ class AuthController extends GetxController {
   }
 
   storeUserData(String email, String password, String name) async {
-    DocumentReference db = firestore
+    DocumentReference db = await firestore
             .collection(userCollection)
             .doc(currentUser!.uid)
             .set({'name': name, 'email': email, 'password': password})

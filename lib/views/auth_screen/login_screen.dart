@@ -10,15 +10,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../widgets/applogo_widget.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
+  var authController = Get.put(AuthController());
+  bool showPassword = false;
   @override
   Widget build(BuildContext context) {
-    var authController = Get.put(AuthController());
     double width = MediaQuery.of(context).size.width;
     return bgWidget(
       child: Scaffold(
@@ -39,9 +44,23 @@ class LoginScreen extends StatelessWidget {
                       controller: emailController,
                     ),
                     InputTextField(
-                        title: password,
-                        hintText: passwordHint,
-                        controller: passwordController),
+                      obscureText: showPassword,
+                      suffix: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            showPassword = !showPassword;
+                          });
+                        },
+                        icon: Icon(
+                          showPassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
+                      ),
+                      title: password,
+                      hintText: passwordHint,
+                      controller: passwordController,
+                    ),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: TextButton(
