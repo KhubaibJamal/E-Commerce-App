@@ -27,6 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   signUpUser() async {
     if (passwordController.text == confirmPasswordController.text) {
+      authController.isLoading(true);
       if (isCheck == true) {
         await authController
             .singUp(emailController.text, passwordController.text, context)
@@ -42,6 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         });
       }
     } else {
+      authController.isLoading(false);
       VxToast.show(context,
           msg: "Password doesn't match",
           bgColor: redColor,
@@ -63,126 +65,132 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 5.heightBox,
                 "$login to $appName".text.white.make(),
                 10.heightBox,
-                Column(
-                  children: [
-                    InputTextField(
-                      title: name,
-                      hintText: nameHint,
-                      controller: nameController,
-                    ),
-                    InputTextField(
-                      title: email,
-                      hintText: emailHint,
-                      controller: emailController,
-                    ),
-                    InputTextField(
-                      obscureText: showPassword,
-                      suffix: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            showPassword = !showPassword;
-                          });
-                        },
-                        icon: Icon(
-                          showPassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                        ),
+                Obx(
+                  () => Column(
+                    children: [
+                      InputTextField(
+                        title: name,
+                        hintText: nameHint,
+                        controller: nameController,
                       ),
-                      title: password,
-                      hintText: passwordHint,
-                      controller: passwordController,
-                    ),
-                    InputTextField(
-                      obscureText: showPassword,
-                      suffix: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            showPassword = !showPassword;
-                          });
-                        },
-                        icon: Icon(
-                          showPassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                        ),
+                      InputTextField(
+                        title: email,
+                        hintText: emailHint,
+                        controller: emailController,
                       ),
-                      title: confirmPassword,
-                      hintText: confirmPasswordHint,
-                      controller: confirmPasswordController,
-                    ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: TextButton(
-                        onPressed: () {},
-                        child: forgetPassword.text.make(),
-                      ),
-                    ),
-                    5.heightBox,
-                    Row(
-                      children: [
-                        Checkbox(
-                          activeColor: redColor,
-                          checkColor: whiteColor,
-                          value: isCheck,
-                          onChanged: (newValue) {
+                      InputTextField(
+                        obscureText: showPassword,
+                        suffix: IconButton(
+                          onPressed: () {
                             setState(() {
-                              isCheck = newValue!;
+                              showPassword = !showPassword;
                             });
                           },
-                        ),
-                        Expanded(
-                          child: RichText(
-                            text: const TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: "I agree to the ",
-                                  style: TextStyle(
-                                    fontFamily: regular,
-                                    color: fontGrey,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: "$termAndCondition & $privacyPolicy",
-                                  style: TextStyle(
-                                    fontFamily: regular,
-                                    color: redColor,
-                                  ),
-                                ),
-                              ],
-                            ),
+                          icon: Icon(
+                            showPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                           ),
                         ),
-                      ],
-                    ),
-                    5.heightBox,
-                    customButton(
-                        title: signUp,
-                        onPress: () {
-                          signUpUser();
-                        },
-                        color: isCheck == true ? redColor : lightGrey,
-                        txtColor: whiteColor,
-                        width: width - 50),
-                    10.heightBox,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        "$alreadyHaveAnAccount? "
-                            .text
-                            .color(fontGrey)
-                            .fontFamily(regular)
-                            .make(),
-                        login.text
-                            .color(redColor)
-                            .fontFamily(regular)
-                            .make()
-                            .onTap(() {
-                          Get.back();
-                        }),
-                      ],
-                    ),
-                  ],
+                        title: password,
+                        hintText: passwordHint,
+                        controller: passwordController,
+                      ),
+                      InputTextField(
+                        obscureText: showPassword,
+                        suffix: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              showPassword = !showPassword;
+                            });
+                          },
+                          icon: Icon(
+                            showPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                        ),
+                        title: confirmPassword,
+                        hintText: confirmPasswordHint,
+                        controller: confirmPasswordController,
+                      ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: TextButton(
+                          onPressed: () {},
+                          child: forgetPassword.text.make(),
+                        ),
+                      ),
+                      5.heightBox,
+                      Row(
+                        children: [
+                          Checkbox(
+                            activeColor: redColor,
+                            checkColor: whiteColor,
+                            value: isCheck,
+                            onChanged: (newValue) {
+                              setState(() {
+                                isCheck = newValue!;
+                              });
+                            },
+                          ),
+                          Expanded(
+                            child: RichText(
+                              text: const TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: "I agree to the ",
+                                    style: TextStyle(
+                                      fontFamily: regular,
+                                      color: fontGrey,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: "$termAndCondition & $privacyPolicy",
+                                    style: TextStyle(
+                                      fontFamily: regular,
+                                      color: redColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      5.heightBox,
+                      authController.isLoading.value
+                          ? const CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation(redColor),
+                            )
+                          : customButton(
+                              title: signUp,
+                              onPress: () {
+                                signUpUser();
+                              },
+                              color: isCheck == true ? redColor : lightGrey,
+                              txtColor: whiteColor,
+                              width: width - 50),
+                      10.heightBox,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          "$alreadyHaveAnAccount? "
+                              .text
+                              .color(fontGrey)
+                              .fontFamily(regular)
+                              .make(),
+                          login.text
+                              .color(redColor)
+                              .fontFamily(regular)
+                              .make()
+                              .onTap(() {
+                            Get.back();
+                          }),
+                        ],
+                      ),
+                    ],
+                  ),
                 )
                     .box
                     .white

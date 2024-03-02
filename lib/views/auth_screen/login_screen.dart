@@ -36,86 +36,96 @@ class _LoginScreenState extends State<LoginScreen> {
                 5.heightBox,
                 "$login to $appName".text.white.make(),
                 10.heightBox,
-                Column(
-                  children: [
-                    InputTextField(
-                      title: email,
-                      hintText: emailHint,
-                      controller: emailController,
-                    ),
-                    InputTextField(
-                      obscureText: showPassword,
-                      suffix: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            showPassword = !showPassword;
-                          });
-                        },
-                        icon: Icon(
-                          showPassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
+                Obx(
+                  () => Column(
+                    children: [
+                      InputTextField(
+                        title: email,
+                        hintText: emailHint,
+                        controller: emailController,
+                      ),
+                      InputTextField(
+                        obscureText: showPassword,
+                        suffix: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              showPassword = !showPassword;
+                            });
+                          },
+                          icon: Icon(
+                            showPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                        ),
+                        title: password,
+                        hintText: passwordHint,
+                        controller: passwordController,
+                      ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: TextButton(
+                          onPressed: () {},
+                          child: forgetPassword.text.make(),
                         ),
                       ),
-                      title: password,
-                      hintText: passwordHint,
-                      controller: passwordController,
-                    ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: TextButton(
-                        onPressed: () {},
-                        child: forgetPassword.text.make(),
-                      ),
-                    ),
-                    5.heightBox,
-                    customButton(
-                        title: login,
-                        onPress: () {
-                          authController
-                              .login(emailController.text,
-                                  passwordController.text, context)
-                              .then((value) {
-                            if (value != null) {
-                              VxToast.show(context,
-                                  msg: "Sign up successfully",
-                                  bgColor: Colors.green,
-                                  textColor: whiteColor);
-                              Get.offAll(const Home());
-                            }
-                          });
-                        },
-                        color: redColor,
-                        txtColor: whiteColor,
-                        width: width - 50),
-                    10.heightBox,
-                    alreadyHaveAnAccount.text.color(fontGrey).make(),
-                    10.heightBox,
-                    customButton(
-                        title: signUp,
-                        onPress: () {
-                          Get.to(() => const SignUpScreen());
-                        },
-                        color: lightGolden,
-                        txtColor: redColor,
-                        width: width - 50),
-                    10.heightBox,
-                    loginWith.text.color(fontGrey).make(),
-                    10.heightBox,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(3, (index) {
-                        return CircleAvatar(
-                          backgroundColor: lightGrey,
-                          radius: 25,
-                          child: Image.asset(
-                            socialIconList[index],
-                            width: 30,
-                          ),
-                        );
-                      }),
-                    )
-                  ],
+                      5.heightBox,
+                      authController.isLoading.value
+                          ? const CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation(redColor),
+                            )
+                          : customButton(
+                              title: login,
+                              onPress: () {
+                                authController.isLoading(true);
+                                authController
+                                    .login(emailController.text,
+                                        passwordController.text, context)
+                                    .then((value) {
+                                  if (value != null) {
+                                    VxToast.show(context,
+                                        msg: "Sign up successfully",
+                                        bgColor: Colors.green,
+                                        textColor: whiteColor);
+                                    Get.offAll(const Home());
+                                  } else {
+                                    authController.isLoading(false);
+                                  }
+                                });
+                              },
+                              color: redColor,
+                              txtColor: whiteColor,
+                              width: width - 50,
+                            ),
+                      10.heightBox,
+                      alreadyHaveAnAccount.text.color(fontGrey).make(),
+                      10.heightBox,
+                      customButton(
+                          title: signUp,
+                          onPress: () {
+                            Get.to(() => const SignUpScreen());
+                          },
+                          color: lightGolden,
+                          txtColor: redColor,
+                          width: width - 50),
+                      10.heightBox,
+                      loginWith.text.color(fontGrey).make(),
+                      10.heightBox,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(3, (index) {
+                          return CircleAvatar(
+                            backgroundColor: lightGrey,
+                            radius: 25,
+                            child: Image.asset(
+                              socialIconList[index],
+                              width: 30,
+                            ),
+                          );
+                        }),
+                      )
+                    ],
+                  ),
                 )
                     .box
                     .white
