@@ -6,7 +6,7 @@ Widget customButton(
     required VoidCallback onPress,
     required Color color,
     required Color txtColor,
-    required width}) {
+    required double width}) {
   return InkWell(
     onTap: onPress,
     child: Container(

@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart/consts/consts.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
   var isLoading = false.obs;
+
+
   Future<UserCredential?> login(String email, String password, context) async {
     UserCredential? userCredential;
     try {
@@ -30,13 +33,12 @@ class AuthController extends GetxController {
   }
 
   storeUserData(String email, String password, String name) async {
-    DocumentReference db =
-        await firestore.collection(userCollection).doc(currentUser!.uid).set({
+    await firestore.collection(userCollection).doc(currentUser!.uid).set({
       'name': name,
       'email': email,
-      'password': password,
+      'profilePicture': '',
       'userId': currentUser!.uid,
-    }) as DocumentReference<Object?>;
+    });
   }
 
   userLogOut(context) async {
