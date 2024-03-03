@@ -17,7 +17,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   bool isCheck = false;
-  bool showPassword = false;
+  bool showPassword = true;
   var authController = Get.put(AuthController());
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
@@ -32,8 +32,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         await authController
             .singUp(emailController.text, passwordController.text, context)
             .then((value) {
-          authController.storeUserData(emailController.text,
-              passwordController.text, nameController.text);
+          authController.storeUserData(
+              emailController.text, nameController.text);
         }).then((value) {
           VxToast.show(context,
               msg: "Sign up successfully",
@@ -70,15 +70,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       InputTextField(
                         title: name,
+                        readOnly: false,
                         hintText: nameHint,
                         controller: nameController,
                       ),
                       InputTextField(
+                        readOnly: false,
                         title: email,
                         hintText: emailHint,
                         controller: emailController,
                       ),
                       InputTextField(
+                        readOnly: false,
                         obscureText: showPassword,
                         suffix: IconButton(
                           onPressed: () {
@@ -97,6 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         controller: passwordController,
                       ),
                       InputTextField(
+                        readOnly: false,
                         obscureText: showPassword,
                         suffix: IconButton(
                           onPressed: () {

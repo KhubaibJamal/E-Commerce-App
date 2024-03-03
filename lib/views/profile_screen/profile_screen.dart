@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart/consts/consts.dart';
 import 'package:emart/consts/list.dart';
@@ -29,6 +31,7 @@ class ProfileScreen extends StatelessWidget {
               );
             } else {
               var data = snapshot.data!.docs[0];
+
               return SafeArea(
                 child: Column(
                   children: [
@@ -41,7 +44,11 @@ class ProfileScreen extends StatelessWidget {
                             alignment: Alignment.topRight,
                             child: GestureDetector(
                               onTap: () {
-                                Get.to(() => EditProfileScreen());
+                                profileController.nameController.text =
+                                    data['name'];
+                                profileController.emailController.text =
+                                    data['email'];
+                                Get.to(() => EditProfileScreen(data: data));
                               },
                               child: const Icon(
                                 Icons.edit_sharp,
@@ -54,11 +61,30 @@ class ProfileScreen extends StatelessWidget {
                           Row(
                             children: [
                               // account picture
-                              Image.asset(
-                                imgProfileIcon,
-                                width: 90,
-                                fit: BoxFit.cover,
-                              ).box.roundedFull.clip(Clip.antiAlias).make(),
+                              // Image.asset(
+                              //   imgProfileIcon,
+                              //   width: 90,
+                              //   fit: BoxFit.cover,
+                              // ).box.roundedFull.clip(Clip.antiAlias).make(),
+                              profileController.imagePath.isEmpty
+                                  ? Image.asset(
+                                      imgProfileIcon,
+                                      width: 90,
+                                      fit: BoxFit.cover,
+                                    )
+                                      .box
+                                      .roundedFull
+                                      .clip(Clip.antiAlias)
+                                      .make()
+                                  : Image.file(
+                                      File(profileController.imagePath.value),
+                                      width: 90,
+                                      fit: BoxFit.cover,
+                                    )
+                                      .box
+                                      .roundedFull
+                                      .clip(Clip.antiAlias)
+                                      .make(),
 
                               // name and email
                               Expanded(

@@ -41,10 +41,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       InputTextField(
                         title: email,
+                        readOnly: false,
                         hintText: emailHint,
                         controller: emailController,
                       ),
                       InputTextField(
+                        readOnly: false,
                         obscureText: showPassword,
                         suffix: IconButton(
                           onPressed: () {
