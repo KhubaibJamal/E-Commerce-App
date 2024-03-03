@@ -6,10 +6,12 @@ class InputTextField extends StatelessWidget {
   final String hintText;
   final bool? obscureText;
   final Widget? suffix;
+  final bool? readOnly;
   final TextEditingController controller;
 
   const InputTextField(
       {super.key,
+      this.readOnly,
       required this.title,
       required this.hintText,
       required this.controller,
@@ -26,6 +28,7 @@ class InputTextField extends StatelessWidget {
         TextFormField(
           obscureText: obscureText!,
           controller: controller,
+          readOnly: readOnly!,
           decoration: InputDecoration(
             suffix: suffix,
             hintText: hintText,
